@@ -1,0 +1,368 @@
+@import url('fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap'); 
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: linear-gradient(to right,#EF60A3, #753BBD);
+}
+
+.header{
+	width: 100%;
+	height: 55px;
+    background: linear-gradient(to right,#EF60A3, #753BBD);
+    border: 1px solid transparent;
+	box-shadow: 5px 10px 10px rebeccapurple;
+}
+
+.header img{
+	float: left;
+	width: 75px;
+	height: 75px;
+    margin-top: -30px;
+	margin-left: 0px;
+}
+
+.header h1{
+    color: white;
+	font-size: 27px;
+    font-family: cursive;
+	font-weight: bold;
+	text-align: left;
+	margin-top: -30px;
+	margin-left: 15px;
+	float: left;
+	line-height: 30px;
+	padding: 17px 10px;
+}
+
+#title{
+    overflow: hidden;
+}
+
+.navbar button:hover{
+    background: linear-gradient(to right,#EF60A3, #753BBD);
+    border: linear-gradient(to right,#EF60A3, #753BBD);
+    cursor: pointer;
+}
+
+.navbar button{
+    margin-left: 3px;
+}
+
+.container{
+    top: 24%;
+    width: 4%;
+    height: 390px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    position: absolute;
+    z-index:1;
+    transition: 0.3s ease-in-out;
+}
+
+.container .navbar li{
+    width: 100%;
+    display: inline-flex;
+    margin: 5px 0;
+}
+
+.container .navbar li i{
+    margin: auto 0;
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+}
+
+.container .navbar li span {
+    position: absolute;
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 5px 8px;
+    text-transform: capitalize;
+    color:  #753BBD;
+    transition: 0.2s;
+    transform: translateX(100px);
+    left: 80px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.container .navbar li span:before {
+    position: absolute;
+    content: '';
+    border: 8px solid #fff;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.container .navbar li:hover span {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.drawBoard{
+    border: 2px solid black;
+    height: 450px;
+    width: 1100px;
+    transform: translate(100px,0px);
+}
+
+.Pen {
+    display: none;
+    border: 2px solid black;
+    background: gray;
+    color: white;
+    position: absolute;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin-left: 65px;
+    z-index: 1;
+}
+
+.Pen-btn {
+    background-color: gray;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.Pen-btn:after {
+    content: '\f0d7';
+    font-family: FontAwesome;
+    float: right;
+}
+
+.Pen-content{
+    display: none;
+    position: absolute;
+    background-color:grey;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    z-index: 1;
+}
+
+.Pen-content div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Pen-content div:hover {
+    background-color: #181616;
+}
+
+.Pen {
+    display: none; 
+}
+
+.Eraser {
+    display: none;
+    border: 2px solid black;
+    position: absolute;
+    background: gray;
+    color: white;
+    height: 45px;
+    width: 200px;
+    margin-left: 65px;
+    z-index: 1;
+    transform: translateY(50px);
+}
+
+.Shape {
+    display: none;
+    border: 2px solid black;
+    background: gray;
+    color: white;
+    position: absolute;
+    display: inline-block;
+    height: 250px;
+    width: 200px;
+    margin-left: 65px;
+    z-index: 1;
+}
+
+.Shape-btn {
+    background-color: gray;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.Shape-btn:after {
+    content: '\f0d7';
+    font-family: FontAwesome;
+    float: right;
+}
+
+.Shape-content{
+    display: none;
+    position: absolute;
+    background-color:grey;
+    min-width: 197px;
+    border: 1px solid #ccc;
+    z-index: 1;
+}
+
+.Shape-content div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Shape-content div:hover {
+    background-color: #181616;
+}
+
+.Shape {
+    display: none; 
+}
+
+.Fillin{
+    display: none;
+    border: 2px solid black;
+    position: absolute;
+    background: gray;
+    color: white;
+    height: 55px;
+    width: 200px;
+    margin-left: 65px;
+    z-index: 1;
+    transform: translateY(115px);
+}
+
+.Text {
+    display: none;
+    border: 2px solid black;
+    background: gray;
+    color: white;
+    position: absolute;
+    display: inline-block;
+    height: 250px;
+    width: 200px;
+    margin-left: 65px;
+    z-index: 1;
+}
+
+.Text-btn {
+    background-color: gray;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.Text-btn:after {
+    content: '\f0d7';
+    font-family: FontAwesome;
+    float: right;
+}
+
+.Text-content{
+    display: none;
+    position: absolute;
+    background-color:grey;
+    min-width: 197px;
+    border: 1px solid #ccc;
+    z-index: 1;
+}
+
+.Text-content div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Text-content div:hover {
+    background-color: #181616;
+}
+
+.Text {
+    display: none; 
+}
+
+.show {
+    display: block;
+}
+
+.Arial{
+    font-family: Arial;
+}
+
+.Calibri{
+    font-family:'Calibri';
+}
+
+.Cambria{
+    font-family: 'Cambria';
+}
+
+.CourierNew{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.Georgia{
+    font-family: 'Georgia';
+}
+
+.Helvetica{
+    font-family: 'Helvetica';
+}
+
+.Monaco{
+    font-family: 'Monaco';
+}
+
+.Roboto{
+    font-family: 'Roboto';
+}
+
+.Sans-serif{
+    font-family: 'Sans-serif';
+}
+
+.TimesNewRoman{
+    font-family: 'Times New Roman';
+}
+
+.text-box {
+    position: absolute;
+    border: 1px dashed black;
+    padding: 5px;
+    background: white;
+    cursor: move;
+}
+.edit-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit-button:hover{
+    background: linear-gradient(to right,#EF60A3, #753BBD);
+}
+
+.delete-button:hover{
+    background: linear-gradient(to right,#EF60A3, #753BBD);
+}
+

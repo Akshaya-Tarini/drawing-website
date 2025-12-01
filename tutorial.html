@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar</title>
+    <link rel="stylesheet" href="Tutorial.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<h1>TUTORIALS</h1>
+<body style="background: linear-gradient(to right, rgb(59, 186, 211), rgb(224, 70, 185));">
+    <form action="" id="searchForm">
+        <input type="search" id="searchInput" placeholder="Search here ...">
+        <i class="fa fa-search"></i>
+    </form>
+    <div class="gallery">
+        <h1>BEGINNERS</h1>
+        <p>
+        <img src="little girl.png" class="thumbnail" data-video="https://www.youtube.com/embed/QAVjOemC0RM" alt="Thumbnail 1" data-keywords="little girl beginner">
+        <img src="manga girl.png" class="thumbnail" data-video="https://www.youtube.com/embed/zwXsww2SJsk" alt="Thumbnail 2" data-keywords="manga girl beginner">
+        <img src="i2.png" class="thumbnail" data-video="https://www.youtube.com/embed/gzLHuKK3gmE" alt="Thumbnail 3" data-keywords="beginner"><br>
+        <img src="i3.png" class="thumbnail" data-video="https://www.youtube.com/embed/iINCXFDic88" alt="Thumbnail 4" data-keywords="beginner">
+        <img src="i4.png" class="thumbnail" data-video="https://www.youtube.com/embed/uHBUqr88ILo" alt="Thumbnail 5" data-keywords="beginner">
+        <img src="i5.png" class="thumbnail" data-video="https://www.youtube.com/embed/4VrBAZb5r_4" alt="Thumbnail 6" data-keywords="beginner">
+        <img src="i18.png" class="thumbnail" data-video="https://www.youtube.com/embed/ltPpJPLDLuc" alt="Thumbnail 6" data-keywords="beginner">
+        <img src="i24.png" class="thumbnail" data-video="https://www.youtube.com/embed/oN829hcZnEg" alt="Thumbnail 6" data-keywords="beginner">
+        <img src="i21.png" class="thumbnail" data-video="https://www.youtube.com/embed/kqMgd8nxgxs" alt="Thumbnail 6" data-keywords="beginner"></p>
+        <h1 style="text-align: left;">INTERMEDIATE</h1>
+        <p>
+        <img src="i1.png" class="thumbnail" data-video="https://www.youtube.com/embed/7Iw6Rr3qx6k" alt="Thumbnail 7" data-keywords="intermediate">
+        <img src="i8.png" class="thumbnail" data-video="https://www.youtube.com/embed/izRCb6LYP-0" alt="Thumbnail 8" data-keywords="intermediate">
+        <img src="i9.png" class="thumbnail" data-video="https://www.youtube.com/embed/KWsgG_WvzPY" alt="Thumbnail 9" data-keywords="intermediate"><br>
+        <img src="i10.png" class="thumbnail" data-video="https://www.youtube.com/embed/Qm9EmfQb_Hk" alt="Thumbnail 10" data-keywords="intermediate">
+        <img src="i12.png" class="thumbnail" data-video="https://www.youtube.com/embed/rl4aDGYOHnI" alt="Thumbnail 11" data-keywords="intermediate">
+        <img src="i15.png" class="thumbnail" data-video="https://www.youtube.com/embed/L-UHuTN2T6A" alt="Thumbnail 12" data-keywords="intermediate">
+        <img src="i17.png" class="thumbnail" data-video="https://www.youtube.com/embed/EB_uscIV7_Q" alt="Thumbnail 18" data-keywords="intermediate">
+        <img src="i25.png" class="thumbnail" data-video="https://www.youtube.com/embed/3hx1y1J6now" alt="Thumbnail 18" data-keywords="intermediate">
+        <img src="i20.png" class="thumbnail" data-video="https://www.youtube.com/embed/gKh58bYTQeY" alt="Thumbnail 18" data-keywords="intermediate"></p>
+        <h1 style="text-align: left;">ADVANCED</h1>
+        <p>
+        <img src="i6.png" class="thumbnail" data-video="https://www.youtube.com/embed/4_XuEQ_GSas" alt="Thumbnail 13" data-keywords="advanced">
+        <img src="i7.png" class="thumbnail" data-video="https://www.youtube.com/embed/5lkXFqN9r1E" alt="Thumbnail 14" data-keywords="advanced">
+        <img src="i11.png" class="thumbnail" data-video="https://www.youtube.com/embed/M8wMWNfQ3PQ" alt="Thumbnail 15" data-keywords="advanced"><br>
+        <img src="i13.png" class="thumbnail" data-video="https://www.youtube.com/embed/fdnfpInaiSw" alt="Thumbnail 16" data-keywords="advanced">
+        <img src="i14.png" class="thumbnail" data-video="https://www.youtube.com/embed/ANEUTz7JXu8" alt="Thumbnail 17" data-keywords="advanced">
+        <img src="i16.png" class="thumbnail" data-video="https://www.youtube.com/embed/xD2TiiqpjEo" alt="Thumbnail 18" data-keywords="advanced">
+        <img src="i19.png" class="thumbnail" data-video="https://www.youtube.com/embed/R7LOLA6jMQs" alt="Thumbnail 18" data-keywords="advanced">
+        <img src="i23.png" class="thumbnail" data-video="https://www.youtube.com/embed/DKTMtZfog8k" alt="Thumbnail 18" data-keywords="advanced">
+        <img src="i22.png" class="thumbnail" data-video="https://www.youtube.com/embed/9yUgTCzzQek" alt="Thumbnail 18" data-keywords="advanced"></p>
+    </div>
+    <div class="overlay" id="videoOverlay">
+        <iframe id="videoPlayer" frameborder="0" allowfullscreen></iframe>
+        <button class="back-button" id="backButton">Back</button>
+    </div>
+    <script>
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoSrc = this.getAttribute('data-video');
+                const videoPlayer = document.getElementById('videoPlayer');
+                const videoOverlay = document.getElementById('videoOverlay');
+                videoPlayer.setAttribute('src', videoSrc);
+                videoOverlay.style.display = 'flex';
+            });
+        });
+        document.getElementById('backButton').addEventListener('click', function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoOverlay = document.getElementById('videoOverlay');
+            videoPlayer.setAttribute('src', ''); 
+            videoOverlay.style.display = 'none';
+        });
+        const searchInput = document.getElementById('searchInput');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+            thumbnails.forEach(thumbnail => {
+                const keywords = thumbnail.getAttribute('data-keywords').toLowerCase();
+                if (keywords.includes(filter)) {
+                    thumbnail.style.display = '';
+                } else {
+                    thumbnail.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

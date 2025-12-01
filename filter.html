@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right,#EF60A3, #753BBD);
+            margin: 10px;
+            color: white;
+        }
+        .controls {
+            margin: 8px 0;
+            margin-top: 100px;
+            margin-left: 100px;
+            float: left;
+            width: 20%;
+        }
+        .capture-area {
+            margin-top: 100px; 
+            margin-left: 20px;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            color: white;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 8%;
+            transform: translateY(-50%);
+            width: 100%;
+            letter-spacing: 0.1em;
+            font-size: 2em;
+        }
+        h1 span {
+            opacity: 0;
+            display: inline-block;
+            animation: animate 1s linear forwards;
+        }
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                transform: rotateY(90deg);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: rotateY(0deg);
+                filter: blur(0);
+            }
+        }
+        #upload {
+            color: rgb(253, 253, 253);
+            padding: 5px 5px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 36px; 
+            left: 480px; 
+            z-index: 9; 
+        }
+        h1 span:nth-child(1) {
+            animation-delay: 1s;
+        }
+        h1 span:nth-child(2) {
+            animation-delay: 2s;
+        }
+        h1 span:nth-child(3) {
+            animation-delay: 2.5s;
+        }
+        h1 span:nth-child(4) {
+            animation-delay: 3s;
+        }
+        section {
+            height: 2vh;
+        }
+        .btn {
+            background-color: rgba(221, 30, 255, 0.519);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+            float: right;
+            margin-right: 100px;
+            margin-top: 30px;
+        }
+        .btn:hover {
+            background-color: rgba(159, 4, 176, 0.959);
+        }
+        .image-preview {
+            max-width: 450px;
+            max-height: 450px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            object-fit: cover;
+        }
+        canvas {
+            border: 1px solid white;
+        }
+
+        #homeButton {
+           float: right;
+           margin-right: 90px;
+           margin-top: 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <button class="btn" id="saveButton"><i class="fa fa-download"></i> Download</button>
+    <a href="#" id="homeButton">
+        <img src="homel.png" onclick="window.location.href='webpg.html'">
+    </a>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script>
+    
+    document.getElementById('saveButton').addEventListener('click', function() {
+    const captureArea = document.getElementById('captureArea');
+    html2canvas(captureArea).then(canvas => {
+        const imageSrc = canvas.toDataURL();
+        const link = document.createElement('a');
+        link.download = 'captured_image.png';
+        link.href = imageSrc;
+        link.click();
+        
+        
+        const savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
+        if (!savedImages.includes(imageSrc)) {
+            savedImages.push(imageSrc);
+            localStorage.setItem('savedImages', JSON.stringify(savedImages));
+
+            
+        }
+        
+       
+        window.location.href = './saved.html';
+        
+    });
+});
+
+    
+
+    </script>
+
+    <section>
+        <h1>
+            <span>FILTERS</span>
+            <span>TO</span>
+            <span>YOUR </span>
+            <span>IMAGE</span>
+        </h1>
+    </section>
+    
+        
+    <input type="file" id="imageUpload" name="file" accept="*/*">
+    
+
+    <script>
+        document.getElementById('upload').addEventListener('click', function() {
+            document.getElementById('imageUpload').click();
+        });
+
+        document.getElementById('imageUpload').addEventListener('change', function() {
+            const selectedFile = this.files[0];
+            console.log('Selected file:', selectedFile);
+        });
+    </script>
+    
+    
+    <div class="controls">
+        <label for="grayscale">Grayscale:</label><br>
+        <input type="range" id="grayscale" min="0" max="100" value="0"><br><br>
+
+        <label for="sepia">Sepia:</label><br>
+        <input type="range" id="sepia" min="0" max="100" value="0"><br><br>
+
+        <label for="brightness">Brightness:</label><br>
+        <input type="range" id="brightness" min="50" max="150" value="100"><br><br>
+
+        <label for="contrast">Contrast:</label><br>
+        <input type="range" id="contrast" min="50" max="150" value="100"><br><br>
+
+        <label for="blur">Blur:</label><br>
+        <input type="range" id="blur" min="0" max="10" value="0" step="0.1"><br><br>
+
+        <label for="hue-rotate">Hue Rotate:</label><br>
+        <input type="range" id="hue-rotate" min="0" max="360" value="0"><br><br>
+
+        <label for="invert">Invert:</label><br>
+        <input type="range" id="invert" min="0" max="100" value="0"><br><br>
+
+        <label for="saturate">Saturate:</label><br>
+        <input type="range" id="saturate" min="0" max="200" value="100"><br><br>
+
+        <label for="opacity">Opacity:</label><br>
+        <input type="range" id="opacity" min="0" max="100" value="100"><br><br>
+    </div>
+
+    <div class="capture-area" id="captureArea">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        const upload = document.getElementById('upload');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const grayscale = document.getElementById('grayscale');
+        const sepia = document.getElementById('sepia');
+        const brightness = document.getElementById('brightness');
+        const contrast = document.getElementById('contrast');
+        const blur = document.getElementById('blur');
+        const hueRotate = document.getElementById('hue-rotate');
+        const invert = document.getElementById('invert');
+        const saturate = document.getElementById('saturate');
+        const opacity = document.getElementById('opacity');
+        let img = new Image();
+
+        upload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                img.onload = () => {
+                    canvas.width = 600; 
+                    canvas.height = 600; 
+                    applyFilters();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function applyFilters() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.filter = `
+                grayscale(${grayscale.value}%)
+                sepia(${sepia.value}%)
+                brightness(${brightness.value}%)
+                contrast(${contrast.value}%)
+                blur(${blur.value}px)
+                hue-rotate(${hueRotate.value}deg)
+                invert(${invert.value}%)
+                saturate(${saturate.value}%)
+                opacity(${opacity.value}%)
+            `;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height); 
+        }
+
+        grayscale.addEventListener('input', applyFilters);
+        sepia.addEventListener('input', applyFilters);
+        brightness.addEventListener('input', applyFilters);
+        contrast.addEventListener('input', applyFilters);
+        blur.addEventListener('input', applyFilters);
+        hueRotate.addEventListener('input', applyFilters);
+        invert.addEventListener('input', applyFilters);
+        saturate.addEventListener('input', applyFilters);
+        opacity.addEventListener('input', applyFilters);
+    </script>
+</body>
+</html>

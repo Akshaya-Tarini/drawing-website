@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="drawing_board.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+   
+</head>
+<body>
+    <br><br>
+    <header>
+        <div class="header" id="header">
+            <a href="index.html"><img src="logo.png" alt="logo"/></a>
+            <h1>Dream Arts</h1>
+            <div style="margin-left: 1200px; cursor: pointer;"><i class="fa-solid fa-house fa-xl" style="color: #ffffff;"></i></div>
+            <br><h6 style="color: #ffffff; margin-left: 1200px;"><a href=""</h6>
+        </div>
+    </header>
+
+    <br>
+    <div class="container">
+        <br>
+        <ol class="navbar" id="tools">
+            <li class="pens" id="tools" data-type="pen"><button><i class="fa-solid fa-pen" onclick="activatePen()"></i></button><span>Pen</span></li>
+            <li class="erasers" id="tools" data-type="eraser"><button onclick="activateEraser()"><i class="fa-solid fa-eraser"></i></button><span>Eraser</span></li>
+            <li class="shapes" id="tools" data-type="shape"><button onclick="activateShapes()"><i class="fa-solid fa-shapes"></i></button><span>Shapes</span></li>
+            <li class="fill" id="tools" data-type="fill"><button onclick="activateFill()"><i class="fas fa-fill"></i></button><span>Fill In</span></li>
+            <li class="texts" id="tools" data-type="text"><button><i class="fa-solid fa-t"></i></button><span>Text</span></li>
+            <li class="zooms" id="tools" data-type="zoom"><button><i class="fa-solid fa-magnifying-glass"></i></button><span>Zoom</span></li>
+            <li class="layers" id="tools" data-type="layer"><button><i class="fa-solid fa-layer-group"></i></button><span>Layer</span></li><!---->
+            <li class="arts" id="tools" data-type="arts"><button><i class="fa-regular fa-face-smile"></i></button><span>Clip-arts</span></li><!---->
+            <li class="undo" id="undoButton" data-type="arts"><button><i class="fa-solid fa-rotate-left"></i></button><span>Undo</span></li><!---->
+            <li class="redo" id="redoButton" data-type="arts"><button><i class="fa-solid fa-rotate-right"></i></button><span>Redo</span></li><!---->
+            <button id="clearButton" style="margin-left: 1210px;">CLEAR</button><br><br>
+            <button id="saveButton" style="margin-left: 1210px;">SAVE</button>
+        </ol>
+    </div>
+
+    <div class="Pen" id="PenMenu">
+        <button class="Pen-btn" id="PenBtn" style="color: white;">Type:</button>
+        <div class="Pen-content" id="PenContent">
+            <div class="brush-option" data-type="brush"><i class="fa-solid fa-paint-roller"></i> Round Brush</div>
+            <div class="brush-option" data-type="square"><i class="fa-solid fa-brush"></i> Square Brush</div>
+            <div class="brush-option" data-type="mirror"><i class="fa-solid fa-person"></i> Mirror Brush</div>
+            <div class="brush-option" data-type="pencil"><i class="fa-solid fa-pencil-alt"></i> Pencil</div>
+            <div class="brush-option" data-type="crayon"><i class="fa-solid fa-square-pen"></i> Crayon</div>
+        </div><br><br>
+
+        <label for="PenColor" style="margin-left: 10px;">Line Colour:</label>
+        <input type="color" id="PenColor" style="margin-left: 30px; cursor: pointer;"><br><br>
+
+        <label for="PenWidth" style="margin-left: 10px;">Line Width:</label><br>
+        <input type="range" id="PenWidth" style="margin-left: 10px;" min="1" max="100" value="5" oninput="changeBrushSize(this.value)">
+    </div>
+
+    <div class="Eraser" id="EraserMenu">
+        <label for="EraserWidth" style="margin-left: 10px">Size:</label><br>
+        <input type="range" id="EraserWidth" style="margin-left: 10px" value="5" oninput="changeBrushSize(this.value)">
+    </div>
+
+    <div class="Shape" id="ShapeMenu">
+        <button class="Shape-btn" id="ShapeBtn" style="color: white;">Type:</button>
+        <div class="Shape-content" id="ShapeContent">
+            <div class="shape-option" data-type="triangle"><i class="fa-solid fa-play fa-rotate-270"></i> Triangle</div>
+            <div class="shape-option" data-type="circle"><i class="fa-solid fa-circle"></i> Circle</div>
+            <div class="shape-option" data-type="square"><i class="fa-solid fa-square"></i> Square</div>
+            <div class="shape-option" data-type="rectangle"><i class="fa-solid fa-mobile fa-rotate-90"></i> Rectangle</div>
+            <div class="shape-option" data-type="line"><i class="fa-solid fa-minus"></i> Line</div>
+            <div class="shape-option" data-type="arrow"><i class="fa-solid fa-arrow-up"></i> Arrow</div>
+        </div><br><br>
+
+        <label for="ShapeColor" style="margin-left: 10px;">Fill:</label>
+        <input type="color" id="ShapeColor" style="margin-left: 30px; cursor: pointer;"><br><br>
+
+        <label for="ShapeOutline" style="margin-left: 10px;">Outline:</label>
+        <input type="color" id="ShapeOutline" style="cursor: pointer;"><br><br>
+
+        <label for="ShapeWidth" style="margin-left: 10px;" value="5" oninput="changeBrushSize(this.value)">Line Width:</label><br>
+        <input type="range" id="ShapeWidth" style="margin-left: 10px;">
+
+    </div>
+
+    <div class="Fillin" id="FillMenu">
+        <label for="FillColor" style="margin-left: 10px">Color:</label><br>
+        <input type="color" id="FillColor" style="margin-left: 10px">
+    </div>
+
+    <div class="Text" id="TextMenu">
+        <button class="Text-btn" id="TextBtn" style="color: white;">Type:</button>
+        <div class="Text-content" id="TextContent">
+            <div class="Arial">Arial</div>
+            <div class="Calibri">Calibri</div>
+            <div class="Cambria"> Cambria </div>
+            <div class="CourierNew">Courier New</div>
+            <div class="Georgia">Georgia</div>
+            <div class="Helvetica">Helvetica</div>
+            <div class="Monaco">Monaco</div>
+            <div class="Roboto">Roboto</div>
+            <div class="Sans-serif">Sans-serif</div>
+            <div class="TimesNewRoman">Times New Roman</div>
+        </div><br><br>
+
+        <input type="text" id="text-input" placeholder="Enter text">
+        <button id="add-text-btn">Add Text</button>
+
+        <label for="TextColor" style="margin-left: 10px;">Fill:</label>
+        <input type="color" id="TextColor" style="margin-left: 30px; cursor: pointer;"><br><br>
+
+        <label for="TextBackground" style="margin-left: 10px;">Outline:</label>
+        <input type="color" id="TextBackground" style="cursor: pointer;"><br><br>
+
+        <label for="TextSize" style="margin-left: 10px;">Font Size:</label><br>
+        <input type="number" id="TextSize" style="margin-left: 10px;" min="1">
+    </div>
+
+    <div class="capture-area" id="captureArea">
+        <canvas class="drawBoard" id="drawCanvas" style="background: #ffffff;"></canvas>
+    </div>
+    <script src="drawing_board.js"></script>
+
+</body>
+</html>
